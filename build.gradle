@@ -1,15 +1,13 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
 }
 
 group = 'com.osrs'
 version = '1.0-SNAPSHOT'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
 repositories {
     mavenCentral()
@@ -28,4 +26,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
-} 
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
