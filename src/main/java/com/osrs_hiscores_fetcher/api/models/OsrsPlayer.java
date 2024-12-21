@@ -1,4 +1,4 @@
-package com.osrs.models;
+package com.osrs_hiscores_fetcher.api.models;
 
 import lombok.Value;
 import com.fasterxml.jackson.annotation.JsonCreator;

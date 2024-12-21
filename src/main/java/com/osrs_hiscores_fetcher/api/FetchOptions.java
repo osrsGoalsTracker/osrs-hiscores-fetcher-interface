@@ -1,10 +1,10 @@
-package com.osrs;
+package com.osrs_hiscores_fetcher.api;
 
 import lombok.Value;
 import lombok.Builder;
 
 /**
- * Configuration options for fetching OSRS player data.
+ * Configuration options for fetching OSRS player data from hiscores.
  */
 @Value
 @Builder

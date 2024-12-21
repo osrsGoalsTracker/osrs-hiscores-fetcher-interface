@@ -1,4 +1,4 @@
-package com.osrs.models;
+package com.osrs_hiscores_fetcher.api.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

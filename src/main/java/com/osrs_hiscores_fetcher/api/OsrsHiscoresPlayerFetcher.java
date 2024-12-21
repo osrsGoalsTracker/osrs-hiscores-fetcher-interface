@@ -1,14 +1,14 @@
-package com.osrs;
+package com.osrs_hiscores_fetcher.api;
 
-import com.osrs.models.OsrsPlayer;
+import com.osrs_hiscores_fetcher.api.models.OsrsPlayer;
 import java.io.IOException;
 
 /**
- * Interface for fetching Old School RuneScape player data.
+ * Interface for fetching Old School RuneScape player data from the hiscores.
  */
-public interface OsrsPlayerFetcher {
+public interface OsrsHiscoresPlayerFetcher {
     /**
-     * Fetches player data for the given RuneScape name (RSN).
+     * Fetches player data from the hiscores for the given RuneScape name (RSN).
      * Uses default options.
      *
      * @param rsn The RuneScape name of the player to fetch data for
@@ -21,7 +21,7 @@ public interface OsrsPlayerFetcher {
     }
 
     /**
-     * Fetches player data for the given RuneScape name (RSN) with specified options.
+     * Fetches player data from the hiscores for the given RuneScape name (RSN) with specified options.
      *
      * @param rsn The RuneScape name of the player to fetch data for
      * @param options Configuration options for the fetch operation

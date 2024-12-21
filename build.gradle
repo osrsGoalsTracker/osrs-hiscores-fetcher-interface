@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.osrs'
+group = 'com.osrs_hiscores_fetcher'
 version = '1.0-SNAPSHOT'
 
 java {

@@ -1,6 +1,6 @@
-# OSRS Player Data Interface
+# OSRS Hiscores Player Data Interface
 
-A Java library for fetching Old School RuneScape player data. This package provides a clean interface for retrieving player statistics, including skills and activities.
+A Java library for fetching Old School RuneScape player data from the hiscores. This package provides a clean interface for retrieving player statistics, including skills and activities.
 
 ## Requirements
 
@@ -16,8 +16,8 @@ A Java library for fetching Old School RuneScape player data. This package provi
 Clone the repository and include it in your project:
 
 ```bash
-git clone https://github.com/yourusername/osrs-player-data-interface.git
-cd osrs-player-data-interface
+git clone https://github.com/yourusername/osrs-hiscores-player-data-interface.git
+cd osrs-hiscores-player-data-interface
 ./gradlew build
 ```
 
@@ -25,22 +25,30 @@ cd osrs-player-data-interface
 After the package is published, add this dependency to your project's build.gradle file:
 
 ```groovy
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
 dependencies {
-    implementation 'com.osrs:osrs-player-data-interface:1.0-SNAPSHOT'
+    implementation 'com.github.osrsGoalsTracker:osrs-player-data-interface:v1.1.3'
 }
 ```
 
 ## Usage
 
 ```java
-import com.osrs.OsrsPlayerFetcher;
-import com.osrs.FetchOptions;
-import com.osrs.models.OsrsPlayer;
-import com.osrs.models.Skill;
-import com.osrs.models.Activity;
+import com.osrs_hiscores_fetcher.api.OsrsHiscoresPlayerFetcher;
+import com.osrs_hiscores_fetcher.api.FetchOptions;
+import com.osrs_hiscores_fetcher.api.models.OsrsPlayer;
+import com.osrs_hiscores_fetcher.api.models.Skill;
+import com.osrs_hiscores_fetcher.api.models.Activity;
 
-// Create an instance of your OsrsPlayerFetcher implementation
-OsrsPlayerFetcher fetcher = new YourImplementation();
+// Create an instance of your OsrsHiscoresPlayerFetcher implementation
+OsrsHiscoresPlayerFetcher fetcher = new YourImplementation();
 
 try {
     // Basic usage with default options
