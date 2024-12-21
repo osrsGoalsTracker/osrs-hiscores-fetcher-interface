@@ -6,8 +6,11 @@ plugins {
 group = 'com.osrs'
 version = '1.0-SNAPSHOT'
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 repositories {
     mavenCentral()
