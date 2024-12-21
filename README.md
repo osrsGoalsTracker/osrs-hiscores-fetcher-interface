@@ -34,6 +34,7 @@ dependencies {
 
 ```java
 import com.osrs.OsrsPlayerFetcher;
+import com.osrs.FetchOptions;
 import com.osrs.models.OsrsPlayer;
 import com.osrs.models.Skill;
 import com.osrs.models.Activity;
@@ -42,9 +43,15 @@ import com.osrs.models.Activity;
 OsrsPlayerFetcher fetcher = new YourImplementation();
 
 try {
-    // Fetch player data - all models are immutable
+    // Basic usage with default options
     OsrsPlayer player = fetcher.getPlayerByRsn("playerName");
     
+    // Or with custom options using the builder pattern
+    OsrsPlayer playerWithVirtualLevels = fetcher.getPlayerByRsn("playerName",
+        FetchOptions.builder()
+            .calculateVirtualLevels(true)
+            .build());
+
     // Access player skills (returns unmodifiable list)
     player.getSkills().forEach(skill -> {
         System.out.printf("%s: Level %d (XP: %d)%n", 
@@ -52,7 +59,7 @@ try {
             skill.getLevel(), 
             skill.getXp());
     });
-    
+
     // Access player activities (returns unmodifiable list)
     player.getActivities().forEach(activity -> {
         if (activity.getRank() > 0) {  // Check if ranked
@@ -141,6 +148,12 @@ To set up your development environment:
    - VS Code: Install "Lombok Annotations Support" extension
 2. Import the project as a Gradle project
 3. Ensure Java 21 is configured as the project SDK
+4. Install Git hooks for build validation:
+   ```bash
+   ./scripts/install-hooks.sh
+   ```
+   This will install a pre-push hook that runs `gradle clean build` before allowing pushes,
+   ensuring that only working code is pushed to the repository.
 
 ## License
 
