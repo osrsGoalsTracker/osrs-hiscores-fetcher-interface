@@ -31,6 +31,39 @@ test {
     useJUnitPlatform()
 }
 
+task checkGitHooks {
+    doLast {
+        def projectDir = project.projectDir
+        def hookFile = new File(projectDir, '.git/hooks/pre-push')
+        def installScript = new File(projectDir, 'scripts/install-hooks.sh')
+
+        if (!hookFile.exists() || !hookFile.canExecute()) {
+            println "Git hooks not found or not executable. Installing them now..."
+
+            if (!installScript.exists()) {
+                throw new GradleException("Cannot find scripts/install-hooks.sh")
+            }
+
+            // Make the install script executable
+            installScript.setExecutable(true)
+
+            // Execute the install script
+            def result = exec {
+                workingDir projectDir
+                commandLine 'sh', installScript.absolutePath
+                ignoreExitValue = true
+            }
+
+            if (result.exitValue != 0) {
+                throw new GradleException("Failed to install git hooks")
+            }
+        }
+    }
+}
+
+// Make build task depend on checkGitHooks
+build.dependsOn checkGitHooks
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
